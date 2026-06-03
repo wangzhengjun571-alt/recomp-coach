@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RecompCoach Daily Log",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["date_or_day", "day_type_logged", "actual_macros"],
+  "properties": {
+    "date_or_day": { "type": "string" },
+    "day_type_logged": { "type": "string", "enum": ["🔴", "🟡", "🟢"] },
+    "actual_macros": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protein_g", "carbs_g", "fat_g", "kcal"],
+      "properties": {
+        "protein_g": { "type": ["number", "null"], "minimum": 0 },
+        "carbs_g":   { "type": ["number", "null"], "minimum": 0 },
+        "fat_g":     { "type": ["number", "null"], "minimum": 0 },
+        "kcal":      { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "weight_kg":  { "type": ["number", "null"], "minimum": 0 },
+    "waist_cm":   { "type": ["number", "null"], "minimum": 0 },
+    "sleep_hours":{ "type": ["number", "null"], "minimum": 0, "maximum": 24 },
+    "strength_status": { "type": ["string", "null"], "enum": ["up", "flat", "stalled_2w", null] },
+    "biofeedback": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "energy": { "type": ["string", "null"] },
+        "hunger": { "type": ["string", "null"] },
+        "pump":   { "type": ["string", "null"] }
+      }
+    }
+  }
+}
