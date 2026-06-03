@@ -5,6 +5,20 @@
   "additionalProperties": false,
   "required": ["date_or_day", "day_type_logged", "actual_macros"],
   "properties": {
+    "user_profile": {
+      "type": "object",
+      "description": "User's body-composition profile. Required on first use; stored and reused thereafter.",
+      "additionalProperties": false,
+      "required": ["sex", "height_cm", "weight_kg", "bodyfat_pct", "target_bf_pct", "age"],
+      "properties": {
+        "sex":            { "type": "string", "enum": ["male", "female", "男", "女"] },
+        "height_cm":      { "type": "number", "minimum": 100, "maximum": 250 },
+        "weight_kg":      { "type": "number", "minimum": 30, "maximum": 250 },
+        "bodyfat_pct":    { "type": "number", "minimum": 3, "maximum": 60 },
+        "target_bf_pct":  { "type": "number", "minimum": 3, "maximum": 60 },
+        "age":            { "type": "number", "minimum": 16, "maximum": 100 }
+      }
+    },
     "date_or_day": { "type": "string" },
     "day_type_logged": { "type": "string", "enum": ["🔴", "🟡", "🟢"] },
     "actual_macros": {
